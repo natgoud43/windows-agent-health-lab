@@ -1,4 +1,4 @@
-import os, winreg, subprocess, pytest
+import os, winreg, subprocess, pytest, configparser
 
 SERVICES = ["QAAgentSvc", "SentinelSvc", "GuardSvc", "ShieldWatchSvc", "BstnSvc", "ShieldCoreSvc", "VltProtSvc", "AegisSvc"]
 
@@ -50,3 +50,8 @@ def count_scm_failures(display_name, minutes):
 def machine_env(name):
     path, _type = read_reg(winreg.HKEY_LOCAL_MACHINE, r"SYSTEM\CurrentControlSet\Control\Session Manager\Environment", name)
     return path
+
+def read_ini_value(path, section, key):
+    config = configparser.ConfigParser()
+    config.read(path)
+    return config[section][key]
