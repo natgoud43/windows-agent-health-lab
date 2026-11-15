@@ -57,6 +57,7 @@ None of the lab agents has a real program behind its service, so the services ca
 - **Every check proven both ways.** Each test was run against a broken setup (red) and a healthy one (green), so a pass means something.
 - **Shared helpers.** All PowerShell, `sc` and registry access lives in `tests/helpers.py`: each helper translates one question into a Python value, and the tests judge it.
 - **Lab check first.** A session-wide fixture checks that the lab is installed. If it isn't, every test is skipped with a clear message instead of failing.
+- **Runs in CI.** Every push builds the lab on a fresh Windows machine in GitHub Actions and runs the whole suite.
 
 ## Project structure
 
