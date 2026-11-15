@@ -1,4 +1,5 @@
 # Windows Agent Health Lab
+![Lab health suite](https://github.com/natgoud43/windows-agent-health-lab/actions/workflows/tests.yml/badge.svg)
 
 A hands-on lab of **seven simulated Windows security agents**, and a **pytest** suite that checks whether each one is configured and running correctly, the way a QA engineer would verify a real endpoint agent.
 
