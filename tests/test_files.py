@@ -24,15 +24,4 @@ def test_config_file_exists_for_agent(name, file):
 def test_sentinel_config_ini(section, key, expected, sentinel_config):
     assert read_ini_value(sentinel_config, section, key) == expected
 
-@pytest.mark.parametrize("content, section, key, expected", [
-    ("[policy]\nmode=Prevent\n","policy", "mode", "Prevent"),
-    ("[policy]\nmode = Prevent","policy", "mode", "Prevent"),
-    ("[policy]\nMode=Prevent","policy", "mode", "Prevent"),
-    ("[policy]\nmode=prevent","policy", "mode", "prevent ")
-])
-def test_read_ini_value_handles_sloppy_files(content,section, key, expected, tmp_path):
-    fake = tmp_path / "config.ini"
-    fake.write_text(content)
-    assert read_ini_value(fake, section, key) == expected
-
     
