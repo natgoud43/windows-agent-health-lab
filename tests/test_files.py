@@ -17,7 +17,7 @@ def test_config_file_exists_for_agent(name, file):
 
 
 @pytest.mark.parametrize("section, key, expected", [
-    ("service", "name", "SentinelSvcA"),
+    ("service", "name", "SentinelSvc"),
     ("service", "startup", "automatic"),
     ("policy", "mode", "Prevent")
 ])
