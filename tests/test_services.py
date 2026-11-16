@@ -16,14 +16,14 @@ def test_bin_path_is_quoted_if_has_spaces(service):
     assert " " not in path or path.startswith('"')
 
 @pytest.mark.parametrize("service", [
-    pytest.param("QAAgentSvc", marks=pytest.mark.xfail(reason="QAAgent binary missing - known lab issue")),
-    pytest.param("SentinelSvc", marks=pytest.mark.xfail(reason="binPath typo: sentinal.exe vs sentinel.exe")),
+    pytest.param("QAAgentSvc", marks=pytest.mark.xfail(raises=AssertionError, reason="QAAgent binary missing - known lab issue")),
+    pytest.param("SentinelSvc", marks=pytest.mark.xfail(raises=AssertionError, reason="binPath typo: sentinal.exe vs sentinel.exe")),
     ("BstnSvc"),
-    pytest.param("GuardSvc", marks=pytest.mark.xfail(reason="GuardSvc binary missing - known lab issue")),
-    pytest.param("ShieldWatchSvc", marks=pytest.mark.xfail(reason="ShieldWatchSvc binary missing - known lab issue")),
-    pytest.param("ShieldCoreSvc", marks=pytest.mark.xfail(reason="ShieldCoreSvc binary missing - known lab issue")),
-    pytest.param("VltProtSvc", marks=pytest.mark.xfail(reason="VltProtSvc binary missing - known lab issue")),
-    pytest.param("AegisSvc", marks=pytest.mark.xfail(reason="AegisSvc binary missing - known lab issue")),
+    pytest.param("GuardSvc", marks=pytest.mark.xfail(raises=AssertionError, reason="GuardSvc binary missing - known lab issue")),
+    pytest.param("ShieldWatchSvc", marks=pytest.mark.xfail(raises=AssertionError, reason="ShieldWatchSvc binary missing - known lab issue")),
+    pytest.param("ShieldCoreSvc", marks=pytest.mark.xfail(raises=AssertionError, reason="ShieldCoreSvc binary missing - known lab issue")),
+    pytest.param("VltProtSvc", marks=pytest.mark.xfail(raises=AssertionError, reason="VltProtSvc binary missing - known lab issue")),
+    pytest.param("AegisSvc", marks=pytest.mark.xfail(raises=AssertionError, reason="AegisSvc binary missing - known lab issue")),
 ])
 def test_service_binary_file_exists(service):
     output = sc("qc", service)

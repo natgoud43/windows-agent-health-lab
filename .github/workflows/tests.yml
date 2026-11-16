@@ -17,8 +17,8 @@ jobs:
         run:  pip install pytest
 
       - name: Build the lab
-        run:  powershell -ExecutionPolicy Bypass -File .\lab\setup_lab.ps1                      
-
+        run:  powershell -ExecutionPolicy Bypass -File .\lab\setup_lab.ps1
+        
       - name: Run the suite
         run: python -m pytest --junitxml=results.xml
 
