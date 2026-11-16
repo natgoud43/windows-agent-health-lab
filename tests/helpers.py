@@ -1,4 +1,8 @@
-import os, winreg, subprocess, pytest, configparser
+try:
+    import winreg
+except ImportError:
+    winreg = None
+import subprocess, configparser
 
 SERVICES = ["QAAgentSvc", "SentinelSvc", "GuardSvc", "ShieldWatchSvc", "BstnSvc", "ShieldCoreSvc", "VltProtSvc", "AegisSvc"]
 
