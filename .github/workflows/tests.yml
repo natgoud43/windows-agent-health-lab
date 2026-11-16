@@ -16,11 +16,11 @@ jobs:
       - name: Install pytest
         run:  pip install pytest
 
+      - name: Build the lab
+        run:  powershell -ExecutionPolicy Bypass -File .\lab\setup_lab.ps1
+        
       - name: Run the suite
         run: python -m pytest --junitxml=results.xml
-
-      - name: Build the lab
-        run:  powershell -ExecutionPolicy Bypass -File .\lab\setup_lab.ps1                      
 
       - name: Save test results
         if: always()                      # save them even if tests fail
