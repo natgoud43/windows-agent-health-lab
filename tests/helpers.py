@@ -47,6 +47,7 @@ def count_scm_failures(display_name, minutes):
     failures = subprocess.run(["powershell", "-NoProfile", "-Command", ps], capture_output=True, text=True).stdout
     return int(failures.strip())
 
+
 def machine_env(name):
     path, _type = read_reg(winreg.HKEY_LOCAL_MACHINE, r"SYSTEM\CurrentControlSet\Control\Session Manager\Environment", name)
     return path

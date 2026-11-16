@@ -28,3 +28,15 @@ jobs:
         with:
           name: test-results
           path: results.xml
+
+  unit:
+      runs-on: ubuntu-latest
+      steps:
+       - uses: actions/checkout@v6
+       - uses: actions/setup-python@v6
+         with:
+           python-version: "3.13"
+       - name: Install pytest
+         run: pip install pytest
+       - name: Run unit tests only
+         run: python -m pytest tests/unit --junitxml=unix_results.xml

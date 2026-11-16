@@ -1,6 +1,6 @@
 import pytest, os
 
-from helpers import machine_env, read_ini_value
+from tests.helpers import machine_env, read_ini_value
 
 @pytest.mark.parametrize("name, file", [
     ("SENTINEL_HOME", "config.ini"),

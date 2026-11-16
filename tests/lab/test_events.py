@@ -1,6 +1,6 @@
 import pytest
 
-from helpers import service_display_name, source_exists, count_bad_events, count_scm_failures, SERVICES
+from tests.helpers import service_display_name, source_exists, count_bad_events, count_scm_failures, SERVICES
 
 @pytest.mark.parametrize("log, source",[
     ("Application", "QAAgent"),
