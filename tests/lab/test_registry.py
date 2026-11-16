@@ -1,6 +1,6 @@
 import pytest, winreg, os
 
-from helpers import read_reg
+from tests.helpers import read_reg
 
 @pytest.mark.parametrize("agent_name, value_name, expected_value, expected_type",[
     ("QAAgent", "Mode", "Prevent", winreg.REG_SZ),

@@ -1,6 +1,6 @@
 import pytest, os
 
-from helpers import sc, binary_path, SERVICES
+from tests.helpers import sc, binary_path, SERVICES
 
 @pytest.mark.parametrize ("service", SERVICES)
 def test_service_auto_start_and_local_system(service):

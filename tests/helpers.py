@@ -1,4 +1,8 @@
-import os, winreg, subprocess, pytest, configparser
+try:
+    import winreg
+except ImportError:
+    winreg = None
+import subprocess, configparser
 
 SERVICES = ["QAAgentSvc", "SentinelSvc", "GuardSvc", "ShieldWatchSvc", "BstnSvc", "ShieldCoreSvc", "VltProtSvc", "AegisSvc"]
 
@@ -46,6 +50,7 @@ def count_scm_failures(display_name, minutes):
           f"Where-Object {{ $_.Message -like '*{display_name}*' }} | Measure-Object).Count")
     failures = subprocess.run(["powershell", "-NoProfile", "-Command", ps], capture_output=True, text=True).stdout
     return int(failures.strip())
+
 
 def machine_env(name):
     path, _type = read_reg(winreg.HKEY_LOCAL_MACHINE, r"SYSTEM\CurrentControlSet\Control\Session Manager\Environment", name)

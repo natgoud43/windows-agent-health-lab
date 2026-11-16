@@ -1,5 +1,5 @@
 import pytest, os
-from helpers import sc, read_reg, machine_env
+from tests.helpers import sc, read_reg, machine_env
 
 @pytest.fixture(scope="session", autouse=True)
 def lab_ready():
