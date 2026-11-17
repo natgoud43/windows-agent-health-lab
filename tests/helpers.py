@@ -42,7 +42,7 @@ def count_bad_events(log, source, minutes):
           f"-ErrorAction SilentlyContinue | Measure-Object).Count")
     out = subprocess.run(["powershell", "-NoProfile", "-Command", ps],
                          capture_output=True, text=True).stdout
-    return int(out.strip() or 0)
+    return int(out.strip())
 
 def count_scm_failures(display_name, minutes):
     ps = (f"(Get-WinEvent -FilterHashtable @{{LogName='System'; ProviderName='Service Control Manager'; Id=7000, 7001; " 
