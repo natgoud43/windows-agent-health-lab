@@ -58,6 +58,7 @@ None of the lab agents has a real program behind its service, so the services ca
 - **Shared helpers.** All PowerShell, `sc` and registry access lives in `tests/helpers.py`: each helper translates one question into a Python value, and the tests judge it.
 - **Lab check first.** A session-wide fixture checks that the lab is installed. If it isn't, every test is skipped with a clear message instead of failing.
 - **Runs in CI.** Every push builds the lab on a fresh Windows machine in GitHub Actions and runs the whole suite.
+- **Runs in CI.** Every push runs two jobs: the full lab suite on a fresh Windows machine, and the unit tests (with mocked PowerShell) on Linux.
 
 ## Project structure
 
@@ -70,13 +71,15 @@ windows-agent-health-lab/
 │   ├── break_lab.ps1      # injects faults for the incident drill
 │   └── cleanup_lab.ps1    # removes everything
 └── tests/
-    ├── conftest.py        # lab_ready: skips the suite if the lab isn't installed
     ├── helpers.py
-    ├── test_helpers.py    # tests the helpers themselves (fake files via tmp_path)
-    ├── test_services.py
-    ├── test_registry.py
-    ├── test_files.py
-    └── test_events.py
+    ├── lab/                   # needs the lab (lab_ready skips locally, fails in CI)
+    │   ├── conftest.py
+    │   ├── test_services.py
+    │   ├── test_registry.py
+    │   ├── test_files.py
+    │   └── test_events.py
+    └── unit/                  # needs nothing: runs on Linux in CI
+        └── test_helpers.py
     
 ```
 
