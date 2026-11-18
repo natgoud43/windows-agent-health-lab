@@ -1,5 +1,5 @@
 import pytest, subprocess
-from tests.helpers import read_ini_value, count_scm_failures, count_bad_events
+from tests.helpers import read_ini_value, count_scm_failures, count_bad_events, source_exists
 from unittest.mock import MagicMock
 
 def test_read_ini_value_from_fake_file(tmp_path):
@@ -50,3 +50,15 @@ def test_count_bad_events_raises_on_empty_output(monkeypatch):
 
     with pytest.raises(ValueError):
         count_bad_events("Application", "QAAgent", 10) 
+
+@pytest.mark.parametrize("stdout, expected", [
+    ("True\n", True),
+    ("False\n", False)
+])
+def test_source_exists_returns_true_or_false_value(stdout, expected, monkeypatch):
+    envelope = MagicMock(stdout = stdout)
+    fake_response = MagicMock(return_value = envelope)
+    monkeypatch.setattr(subprocess, "run", fake_response)
+    assert source_exists("QAAgent") == expected
+
+
